@@ -1,17 +1,6 @@
 /**
- *Submitted for verification at BscScan.com on 2021-04-29
+ *Submitted for verification at BscScan.com on 2021-05-12
 */
-
-/**
-  
-██╗  ██╗███████╗██████╗  ██████╗ ██╗
-██║  ██║██╔════╝██╔══██╗██╔════╝ ██║
-███████║█████╗  ██║  ██║██║  ███╗██║
-██╔══██║██╔══╝  ██║  ██║██║   ██║██║
-██║  ██║███████╗██████╔╝╚██████╔╝██║
-╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝
-                                    
- */
 
 pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Unlicensed
@@ -715,10 +704,10 @@ contract Hedgehog is Context, IERC20, Ownable {
     string private _symbol = "HEDGI";
     uint8 private _decimals = 9;
     
-    uint256 public _taxFee = 5;
+    uint256 public _taxFee = 2;
     uint256 private _previousTaxFee = _taxFee;
     
-    uint256 public _liquidityFee = 5;
+    uint256 public _liquidityFee = 2;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
     IUniswapV2Router02 public immutable uniswapV2Router;
@@ -747,7 +736,7 @@ contract Hedgehog is Context, IERC20, Ownable {
     constructor () public {
         _rOwned[_msgSender()] = _rTotal;
         
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);
+        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);
          // Create a uniswap pair for this new token
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
@@ -1151,8 +1140,4 @@ contract Hedgehog is Context, IERC20, Ownable {
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
-
-
-    
-
 }
